@@ -7,6 +7,8 @@ import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 public class AdvertisementsService {
 
@@ -23,6 +25,22 @@ public class AdvertisementsService {
     }
 
     public void editAdvertisement(Integer advertisementId, AdvertisementDto advertisementDto) {
+        //leia Id järgi ad ja uuenda
+        Advertisement advertisement = getEditedAdvertisement(advertisementId, advertisementDto);
+        //salvesta ad
+        advertisementService.saveAdvertisement(advertisement);
 
+    }
+
+    private Advertisement getEditedAdvertisement(Integer advertisementId, AdvertisementDto advertisementDto) {
+        Advertisement advertisement = advertisementService.findAdvertisement(advertisementId);
+        advertisementMapper.updateAdvertisement(advertisementDto, advertisement);
+        return advertisement;
+    }
+
+    public List<AdvertisementDto> getAdvertisements(Integer userId, Integer typeId) {
+        List<Advertisement> advertisements = advertisementService.findAdvertisements(userId, typeId);
+        List<AdvertisementDto> advertisementDtos = advertisementMapper.toDtos(advertisements);
+        return advertisementDtos;
     }
 }
