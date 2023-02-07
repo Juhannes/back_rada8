@@ -45,3 +45,10 @@ INSERT INTO public.city (id, name) VALUES (44, 'Abja-Paluoja');
 INSERT INTO public.city (id, name) VALUES (45, 'Püssi');
 INSERT INTO public.city (id, name) VALUES (46, 'Mõisaküla');
 INSERT INTO public.city (id, name) VALUES (47, 'Kallaste');
+
+INSERT INTO public.role (id, name) VALUES (1, 'admin');
+INSERT INTO public.role (id, name) VALUES (2, 'user');
+
+INSERT INTO public.advertisement_type (id, name) VALUES (1, 'band');
+INSERT INTO public.advertisement_type (id, name) VALUES (2, 'member');
+INSERT INTO public.advertisement_type (id, name) VALUES (3, 'equipment');
