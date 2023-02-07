@@ -1,5 +1,5 @@
 -- Created by Vertabelo (http://vertabelo.com)
--- Last modification date: 2023-02-07 07:21:46.614
+-- Last modification date: 2023-02-07 07:44:42.943
 
 -- tables
 -- Table: advertisement
@@ -70,10 +70,11 @@ CREATE TABLE role (
 -- Table: user
 CREATE TABLE "user" (
                         id serial  NOT NULL,
-                        username varchar(255)  NOT NULL,
-                        password varchar(255)  NOT NULL,
+                        username varchar(255)  NULL,
+                        password varchar(255)  NULL,
                         email varchar(255)  NOT NULL,
                         role_id int  NOT NULL,
+                        CONSTRAINT user_ak_1 UNIQUE (username) NOT DEFERRABLE  INITIALLY IMMEDIATE,
                         CONSTRAINT user_pk PRIMARY KEY (id)
 );
 
