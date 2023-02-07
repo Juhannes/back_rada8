@@ -28,4 +28,6 @@ public class Conversation {
     @Column(name = "subject", nullable = false)
     private String subject;
 
+    ///random
+
 }
