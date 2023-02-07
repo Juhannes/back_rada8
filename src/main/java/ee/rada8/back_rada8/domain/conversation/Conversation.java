@@ -1,21 +1,19 @@
 package ee.rada8.back_rada8.domain.conversation;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import ee.rada8.back_rada8.domain.Advertisement.Advertisement;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 
 import java.time.Instant;
 
-
 @Data
 @Entity
 @Table(name = "conversation")
 public class Conversation {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Integer id;
 
@@ -28,6 +26,9 @@ public class Conversation {
     @Column(name = "subject", nullable = false)
     private String subject;
 
-    ///random
+    @NotNull
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "advertisement_id", nullable = false)
+    private Advertisement advertisement;
 
 }

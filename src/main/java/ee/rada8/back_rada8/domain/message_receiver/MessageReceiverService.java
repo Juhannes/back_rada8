@@ -15,5 +15,9 @@ public class MessageReceiverService {
 
     }
 
-//    public void get
+    public MessageReceiver getMessageReceiver(Integer messageId) {
+
+        return messageReceiverRepository.findByMessage(messageId);
+
+    }
 }

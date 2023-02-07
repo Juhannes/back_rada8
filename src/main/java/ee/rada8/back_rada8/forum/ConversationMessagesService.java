@@ -1,5 +1,8 @@
 package ee.rada8.back_rada8.forum;
 
+import ee.rada8.back_rada8.domain.Advertisement.Advertisement;
+import ee.rada8.back_rada8.domain.conversation.Conversation;
+import ee.rada8.back_rada8.domain.conversation.ConversationService;
 import ee.rada8.back_rada8.domain.message.Message;
 import ee.rada8.back_rada8.domain.message.MessageMapper;
 import ee.rada8.back_rada8.domain.message.MessageService;
@@ -13,12 +16,15 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class ConversationService {
+public class ConversationMessagesService {
     @Resource
     private MessageService messageService;
 
     @Resource
     private MessageReceiverService messageReceiverService;
+
+    @Resource
+    private ConversationService conversationService;
 
     private MessageMapper messageMapper;
 
@@ -33,6 +39,12 @@ public class ConversationService {
 
         // conversationId ja advertisementId leidmine ja lisamine
         for (MessageDto messageDto : messageDtos) {
+            MessageReceiver messageReceiver = messageReceiverService.getMessageReceiver(messageDto.getMessageId());
+            Conversation conversation = conversationService.getConversation(messageReceiver.getId());
+            messageDto.setConversationId(conversation.getId());
+            messageDto.setAdvertisementId(conversation.getAdvertisement().getId());
+            messageDto.setSubject(conversation.getSubject());
+            messageDto.setSender(messageReceiver.getSender());
 
         }
 
@@ -41,17 +53,18 @@ public class ConversationService {
     }
 }
 
+// TESTI KAS ON VALMIS!!!
 
 // private Integer messageId;
 //
-// TODO:  private Integer conversationId;
+// private Integer conversationId;
 //
-// TODO:  private String subject;
+// private String subject;
 //
-// TODO:  private User sender;
+//  private User sender;
 //
 // private String body;
 //
 // private String dateTime;
 //
-// TODO:  private Integer advertisementId;
+// private Integer advertisementId;
