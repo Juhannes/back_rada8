@@ -15,11 +15,9 @@ private UserService userService;
 private UserMapper userMapper;
 
 
-//login meetod võtab sisse username ja passwordi ja tagastab LoginResponse objekti
     public LoginResponse login(String username, String password) {
         User user = userService.findUser(username, password);
-        LoginResponse loginResponse = userMapper.toDto(user);
 
-        return loginResponse;
+        return userMapper.toDto(user);
     }
 }
