@@ -1,6 +1,5 @@
 package ee.rada8.back_rada8.domain.user;
 
-import ee.rada8.back_rada8.domain.User;
 import ee.rada8.back_rada8.forum.login.LoginResponse;
 import org.mapstruct.*;
 

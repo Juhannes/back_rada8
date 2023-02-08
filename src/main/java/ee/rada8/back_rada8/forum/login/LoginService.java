@@ -1,6 +1,6 @@
 package ee.rada8.back_rada8.forum.login;
 
-import ee.rada8.back_rada8.domain.User;
+import ee.rada8.back_rada8.domain.user.User;
 import ee.rada8.back_rada8.domain.user.UserMapper;
 import ee.rada8.back_rada8.domain.user.UserService;
 import jakarta.annotation.Resource;
