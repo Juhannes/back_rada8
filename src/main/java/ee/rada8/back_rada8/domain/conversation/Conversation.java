@@ -1,12 +1,13 @@
 package ee.rada8.back_rada8.domain.conversation;
 
-import ee.rada8.back_rada8.domain.Advertisement.Advertisement;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 
 import java.time.Instant;
+import java.time.LocalDateTime;
+
 
 @Data
 @Entity
@@ -19,16 +20,11 @@ public class Conversation {
 
     @NotNull
     @Column(name = "datetime", nullable = false)
-    private Instant datetime;
+    private LocalDateTime datetime;
 
     @Size(max = 255)
     @NotNull
     @Column(name = "subject", nullable = false)
     private String subject;
-
-    @NotNull
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "advertisement_id", nullable = false)
-    private Advertisement advertisement;
 
 }
