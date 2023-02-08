@@ -52,3 +52,9 @@ INSERT INTO public.role (id, name) VALUES (DEFAULT, 'user');
 INSERT INTO public.advertisement_type (id, name) VALUES (DEFAULT, 'band');
 INSERT INTO public.advertisement_type (id, name) VALUES (DEFAULT, 'member');
 INSERT INTO public.advertisement_type (id, name) VALUES (DEFAULT, 'equipment');
+
+INSERT INTO public."user" (id, username, password, email, role_id) VALUES (DEFAULT, 'admin', '123', 'admin@rada8.ee', 1);
+INSERT INTO public."user" (id, username, password, email, role_id) VALUES (DEFAULT, 'mihkel', '123', 'mihkel@rada8.ee', 2);
+INSERT INTO public."user" (id, username, password, email, role_id) VALUES (DEFAULT, 'juhannes', '123', 'juhannes@rada8.ee', 2);
+INSERT INTO public."user" (id, username, password, email, role_id) VALUES (DEFAULT, 'silver', '123', 'silver@rada8.ee', 2);
+
