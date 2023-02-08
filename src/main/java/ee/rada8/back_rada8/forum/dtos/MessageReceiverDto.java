@@ -1,5 +1,6 @@
 package ee.rada8.back_rada8.forum.dtos;
 
+import ee.rada8.back_rada8.domain.message.Message;
 import lombok.Data;
 
 @Data
@@ -9,7 +10,7 @@ public class MessageReceiverDto {
 
     private Integer conversationId;
 
-    private Integer messageId;
+    private Message message;
 
     private Integer senderId;
 

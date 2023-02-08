@@ -5,6 +5,11 @@ import org.mapstruct.*;
 
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = "spring")
 public interface ConversationMapper {
+
+    @Mapping(source = "id", target = "conversationId")
+    @Mapping(source = "subject", target = "subject")
+    @Mapping(source = "datetime", target = "dateTime")
+    @Mapping(source = "advertisement.id", target = "advertisementId")
     ConversationDto toDto(Conversation conversation);
 
 }

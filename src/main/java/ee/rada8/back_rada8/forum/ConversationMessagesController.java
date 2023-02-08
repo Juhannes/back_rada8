@@ -1,6 +1,6 @@
 package ee.rada8.back_rada8.forum;
 
-import ee.rada8.back_rada8.forum.dtos.MessageDto;
+import ee.rada8.back_rada8.forum.dtos.ReceivedMessageDto;
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,8 +17,8 @@ public class ConversationMessagesController {
 
     @GetMapping("/message")
     @Operation(summary = "Tagastab kõik kasutaja sõnumid", description = "Otsib üles kõik sõnumid, kus kasutaja on receiver rollis")
-    public List<MessageDto> getUserMessages(@RequestParam Integer userId) {
-        List<MessageDto> conversations = conversationMessagesService.getUserConversationsWithMessages(userId);
+    public List<ReceivedMessageDto> getUserMessages(@RequestParam Integer userId) {
+        List<ReceivedMessageDto> conversations = conversationMessagesService.getUserConversationsWithMessages(userId);
 
         return conversations;
 
