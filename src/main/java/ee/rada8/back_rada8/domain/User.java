@@ -1,4 +1,4 @@
-package ee.rada8.back_rada8.domain.user;
+package ee.rada8.back_rada8.domain;
 
 import ee.rada8.back_rada8.domain.Role;
 import jakarta.persistence.*;
