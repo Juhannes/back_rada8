@@ -1,7 +1,7 @@
 package ee.rada8.back_rada8.domain.advertisements;
 
 import ee.rada8.back_rada8.domain.City;
-import ee.rada8.back_rada8.domain.user.User;
+import ee.rada8.back_rada8.domain.User;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
