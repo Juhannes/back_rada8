@@ -11,6 +11,7 @@ public interface UserMapper {
     @Mapping(source = "username", target = "username")
     @Mapping(source = "password",target = "password")
     @Mapping(source = "email",target = "email")
+    @Mapping(constant = "2", target = "role.id")
     User toEntity(UserDto userDto);
 
     @Mapping(source = "id", target = "userId")
