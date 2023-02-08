@@ -10,6 +10,7 @@ public class AdvertisementService {
 
 
 
+    @Resource
     private AdvertisementRepository advertisementRepository;
 
     public void saveAdvertisement(Advertisement advertisement) {
