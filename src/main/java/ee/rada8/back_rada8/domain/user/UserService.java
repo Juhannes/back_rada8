@@ -1,6 +1,7 @@
 package ee.rada8.back_rada8.domain.user;
 
 import ee.rada8.back_rada8.domain.User;
+import ee.rada8.back_rada8.forum.new_user.NewUserService;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +15,7 @@ public class UserService {
 
     @Resource
     private UserRepository userRepository;
+
 
     public User findUser(String username, String password) {
         Optional<User> optionalUser = userRepository.findUser(username, password);
