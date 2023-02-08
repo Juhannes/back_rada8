@@ -47,11 +47,11 @@ public class Advertisement {
 
     @NotNull
     @Column(name = "created_timestamp", nullable = false)
-    private Instant createdTimestamp;
+    private String createdTimestamp;
 
     @NotNull
     @Column(name = "edited_timestamp", nullable = false)
-    private Instant editedTimestamp;
+    private String editedTimestamp;
 
     @Size(max = 1)
     @NotNull
