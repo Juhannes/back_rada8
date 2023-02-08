@@ -1,6 +1,5 @@
 package ee.rada8.back_rada8.forum.dtos;
 
-import ee.rada8.back_rada8.domain.User;
 import lombok.Data;
 
 @Data
@@ -12,12 +11,15 @@ public class MessageDto {
 
     private String subject;
 
-    private User sender;
+    private UserDto sender;
 
     private String body;
 
+//    private String picture;
     private String dateTime;
 
     private Integer advertisementId;
 
 }
+
+// TODO: Vaja lisada picture (ja võibolla status)

@@ -12,9 +12,11 @@ public interface MessageMapper {
     @Mapping(source = "id", target = "messageId")
     @Mapping(source = "body", target = "body")
     @Mapping(source = "datetime", target = "dateTime")
-    @Mapping(source = "", target = "conversationId")
+//    @Mapping(source = "picture", target = "picture")
     MessageDto toDto(Message message);
 
     List<MessageDto> toDtos(List<Message> messages);
 
 }
+
+// TODO: Vaja teha picture convert from byte to String ja ära mappida

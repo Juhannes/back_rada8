@@ -1,13 +1,16 @@
 package ee.rada8.back_rada8.domain.message_receiver;
 
-import ee.rada8.back_rada8.domain.User;
 import ee.rada8.back_rada8.domain.conversation.Conversation;
 import ee.rada8.back_rada8.domain.message.Message;
+import ee.rada8.back_rada8.domain.user.User;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+
+@Getter
+@Setter
 @Entity
 @Table(name = "message_receiver")
 public class MessageReceiver {
