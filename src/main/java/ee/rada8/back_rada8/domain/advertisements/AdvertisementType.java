@@ -1,0 +1,24 @@
+package ee.rada8.back_rada8.domain.advertisements;
+
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+@Entity
+@Table(name = "advertisement_type")
+public class AdvertisementType {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false)
+    private Integer id;
+
+    @Size(max = 20)
+    @NotNull
+    @Column(name = "name", nullable = false, length = 20)
+    private String name;
+
+}
