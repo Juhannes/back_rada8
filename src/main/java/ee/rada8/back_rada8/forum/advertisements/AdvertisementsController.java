@@ -12,6 +12,8 @@ public class AdvertisementsController {
 
     @Resource
     private AdvertisementsService advertisementsService;
+    @Resource
+    private AdvertisementTypesService advertisementTypesService;
 
     @PostMapping("/my-advertisements")
     @Operation(summary = "Adds new advertisement", description = "Adds new advertisement to table 'advertisement'")
@@ -30,6 +32,12 @@ public class AdvertisementsController {
     public List<AdvertisementDto> getAdvertisements(@RequestParam Integer userId, @RequestParam Integer typeId) {
         List<AdvertisementDto> advertisements = advertisementsService.getAdvertisements(userId, typeId);
         return advertisements;
+    }
+
+    @GetMapping("/my-advertisements-types")
+    @Operation(summary = "Returns advertisement types", description = "Returns all advertisement types")
+    public List<AdvertisementTypeDto> getAllAdvertisementTypes() {
+        return advertisementTypesService.getAdvertisementTypes();
     }
 
     @DeleteMapping("/my-advertisements")
