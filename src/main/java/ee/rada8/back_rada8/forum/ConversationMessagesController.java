@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.text.ParseException;
 import java.util.List;
 
 @RestController
@@ -17,7 +18,7 @@ public class ConversationMessagesController {
 
     @GetMapping("/message")
     @Operation(summary = "Tagastab kõik kasutaja sõnumid", description = "Otsib üles kõik sõnumid, kus kasutaja on receiver rollis")
-    public List<ReceivedMessageDto> getUserMessages(@RequestParam Integer userId) {
+    public List<ReceivedMessageDto> getUserMessages(@RequestParam Integer userId) throws ParseException {
         List<ReceivedMessageDto> conversations = conversationMessagesService.getUserConversationsWithMessages(userId);
 
         return conversations;

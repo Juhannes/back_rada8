@@ -67,6 +67,6 @@ INSERT INTO public.message (id, body, datetime, picture, status) VALUES (1, 'asd
 INSERT INTO public.message (id, body, datetime, picture, status) VALUES (2, 'Mul on hea kidra', '2023-02-08 11:43:41.000000', null, 'A');
 INSERT INTO public.message (id, body, datetime, picture, status) VALUES (3, 'Olen trummar', '2023-02-08 11:44:06.000000', null, 'A');
 
-INSERT INTO public.message_receiver (id, conversation_id, message_id, sender_id, receiver_id) VALUES (1, 1, 1, 4, 3);
+INSERT INTO public.message_receiver (id, conversation_id, message_id, sender_id, receiver_id) VALUES (1, 1, 1, 2, 3);
 INSERT INTO public.message_receiver (id, conversation_id, message_id, sender_id, receiver_id) VALUES (3, 2, 2, 3, 2);
 INSERT INTO public.message_receiver (id, conversation_id, message_id, sender_id, receiver_id) VALUES (4, 3, 3, 4, 3);

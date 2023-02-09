@@ -16,8 +16,16 @@ import ee.rada8.back_rada8.forum.dtos.UserDto;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+
+import static jakarta.xml.bind.DatatypeConverter.parseString;
 
 @Service
 public class ConversationMessagesService {
@@ -34,7 +42,7 @@ public class ConversationMessagesService {
     @Resource
     private ConversationMapper conversationMapper;
 
-    public List<ReceivedMessageDto> getUserConversationsWithMessages(Integer userId) {
+    public List<ReceivedMessageDto> getUserConversationsWithMessages(Integer userId) throws ParseException {
 
         // Sõnumi sisu leidmine ja lisamine messageDtos'sse: messageId, body, dateTime
         List<MessageReceiver> receivedConversationData = messageReceiverService.getReceivedConversations(userId);
@@ -66,11 +74,22 @@ public class ConversationMessagesService {
         receivedMessageDto.setAdvertisementId(conversationDto.getAdvertisementId());
     }
 
-    private void addMessageDtoToReceivedMessageDto(MessageReceiver messageReceiverEntry, ReceivedMessageDto receivedMessageDto) {
+    private void addMessageDtoToReceivedMessageDto(MessageReceiver messageReceiverEntry, ReceivedMessageDto receivedMessageDto) throws ParseException {
         Message message = messageReceiverEntry.getMessage();
+
+
+
         MessageDto messageDto = messageMapper.toDto(message);
         receivedMessageDto.setMessageId(messageDto.getMessageId());
         receivedMessageDto.setBody(messageDto.getBody());
-        receivedMessageDto.setDateTime(messageDto.getDateTime());
+
+
+//        DateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSSSSSSS");
+        String outputFormat = "dd/MM/yyyy HH:mm";
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(outputFormat).withZone(ZoneId.systemDefault());
+        String formattedTimestamp = formatter.format(message.getDatetime());
+
+        receivedMessageDto.setDateTime(formattedTimestamp);
+
     }
 }
