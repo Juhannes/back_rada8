@@ -16,6 +16,7 @@ public interface UserMapper {
 
     @Mapping(source = "id", target = "userId")
     @Mapping(source = "role.name", target = "userName")
+    @Mapping(source = "email", target = "email")
     LoginResponse toDto(User user);
 
 
