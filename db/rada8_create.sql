@@ -1,5 +1,5 @@
 -- Created by Vertabelo (http://vertabelo.com)
--- Last modification date: 2023-02-07 07:44:42.943
+-- Last modification date: 2023-02-08 07:40:35.226
 
 -- tables
 -- Table: advertisement
@@ -36,7 +36,7 @@ CREATE TABLE conversation (
                               id serial  NOT NULL,
                               datetime timestamp  NOT NULL,
                               subject varchar(255)  NOT NULL,
-                              advertisement_id int  NOT NULL,
+                              advertisement_id int  NULL,
                               CONSTRAINT conversation_pk PRIMARY KEY (id)
 );
 
@@ -70,8 +70,8 @@ CREATE TABLE role (
 -- Table: user
 CREATE TABLE "user" (
                         id serial  NOT NULL,
-                        username varchar(255)  NULL,
-                        password varchar(255)  NULL,
+                        username varchar(255)  NOT NULL,
+                        password varchar(255)  NOT NULL,
                         email varchar(255)  NOT NULL,
                         role_id int  NOT NULL,
                         CONSTRAINT user_ak_1 UNIQUE (username) NOT DEFERRABLE  INITIALLY IMMEDIATE,

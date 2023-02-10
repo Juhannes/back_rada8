@@ -1,21 +1,17 @@
 package ee.rada8.back_rada8.domain.conversation;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import ee.rada8.back_rada8.domain.advertisements.Advertisement;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
-import lombok.Data;
 
 import java.time.Instant;
 
-
-@Data
 @Entity
 @Table(name = "conversation")
 public class Conversation {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Integer id;
 
@@ -27,5 +23,41 @@ public class Conversation {
     @NotNull
     @Column(name = "subject", nullable = false)
     private String subject;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "advertisement_id")
+    private Advertisement advertisement;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Instant getDatetime() {
+        return datetime;
+    }
+
+    public void setDatetime(Instant datetime) {
+        this.datetime = datetime;
+    }
+
+    public String getSubject() {
+        return subject;
+    }
+
+    public void setSubject(String subject) {
+        this.subject = subject;
+    }
+
+    public Advertisement getAdvertisement() {
+        return advertisement;
+    }
+
+    public void setAdvertisement(Advertisement advertisement) {
+        this.advertisement = advertisement;
+    }
 
 }

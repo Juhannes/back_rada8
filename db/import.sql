@@ -53,8 +53,20 @@ INSERT INTO public.advertisement_type (id, name) VALUES (DEFAULT, 'band');
 INSERT INTO public.advertisement_type (id, name) VALUES (DEFAULT, 'member');
 INSERT INTO public.advertisement_type (id, name) VALUES (DEFAULT, 'equipment');
 
-INSERT INTO public."user" (id, username, password, email, role_id) VALUES (DEFAULT, 'admin', '123', 'admin@rada8.ee', 1);
-INSERT INTO public."user" (id, username, password, email, role_id) VALUES (DEFAULT, 'mihkel', '123', 'mihkel@rada8.ee', 2);
-INSERT INTO public."user" (id, username, password, email, role_id) VALUES (DEFAULT, 'juhannes', '123', 'juhannes@rada8.ee', 2);
-INSERT INTO public."user" (id, username, password, email, role_id) VALUES (DEFAULT, 'silver', '123', 'silver@rada8.ee', 2);
 
+
+INSERT INTO public."user" (id, username, password, email, role_id) VALUES (2, 'admin', 'admin', 'admin@admin.ee', 1);
+INSERT INTO public."user" (id, username, password, email, role_id) VALUES (3, 'ain', '123', 'ain@ain.ee', 2);
+INSERT INTO public."user" (id, username, password, email, role_id) VALUES (4, 'asdf', '123', 'asdf@asdf.ee', 2);
+
+INSERT INTO public.conversation (id, datetime, subject, advertisement_id) VALUES (1, '2023-02-08 11:37:50.000000', 'asddfasdfadsf', null);
+INSERT INTO public.conversation (id, datetime, subject, advertisement_id) VALUES (2, '2023-01-08 11:37:58.000000', 'Otsin kidra', null);
+INSERT INTO public.conversation (id, datetime, subject, advertisement_id) VALUES (3, '2023-01-13 11:38:11.000000', 'Otsin trummarit', null);
+
+INSERT INTO public.message (id, body, datetime, picture, status) VALUES (1, 'asdfasdfasdf', '2023-02-08 11:42:54.000000', null, 'A');
+INSERT INTO public.message (id, body, datetime, picture, status) VALUES (2, 'Mul on hea kidra', '2023-02-08 11:43:41.000000', null, 'A');
+INSERT INTO public.message (id, body, datetime, picture, status) VALUES (3, 'Olen trummar', '2023-02-08 11:44:06.000000', null, 'A');
+
+INSERT INTO public.message_receiver (id, conversation_id, message_id, sender_id, receiver_id) VALUES (1, 1, 1, 2, 3);
+INSERT INTO public.message_receiver (id, conversation_id, message_id, sender_id, receiver_id) VALUES (3, 2, 2, 3, 2);
+INSERT INTO public.message_receiver (id, conversation_id, message_id, sender_id, receiver_id) VALUES (4, 3, 3, 4, 3);

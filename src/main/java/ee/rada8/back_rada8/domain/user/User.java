@@ -4,9 +4,11 @@ import ee.rada8.back_rada8.domain.Role;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 @Entity
 @Table(name = "\"user\"")
 public class User {
@@ -16,13 +18,11 @@ public class User {
     private Integer id;
 
     @Size(max = 255)
-    @NotNull
-    @Column(name = "username", nullable = false)
+    @Column(name = "username")
     private String username;
 
     @Size(max = 255)
-    @NotNull
-    @Column(name = "password", nullable = false)
+    @Column(name = "password")
     private String password;
 
     @Size(max = 255)
