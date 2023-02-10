@@ -11,4 +11,6 @@ public class MessageDto {
 
     private String dateTime;
 
+    private String status;
+
 }

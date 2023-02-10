@@ -1,9 +1,11 @@
 package ee.rada8.back_rada8.forum;
 
+import ee.rada8.back_rada8.domain.MessageStatus;
 import ee.rada8.back_rada8.domain.conversation.Conversation;
 import ee.rada8.back_rada8.domain.conversation.ConversationMapper;
 import ee.rada8.back_rada8.domain.message.Message;
 import ee.rada8.back_rada8.domain.message.MessageMapper;
+import ee.rada8.back_rada8.domain.message.MessageService;
 import ee.rada8.back_rada8.domain.message_receiver.MessageReceiver;
 import ee.rada8.back_rada8.domain.message_receiver.MessageReceiverService;
 import ee.rada8.back_rada8.domain.user.User;
@@ -11,27 +13,27 @@ import ee.rada8.back_rada8.domain.user.UserMapper;
 import ee.rada8.back_rada8.forum.dtos.ConversationDto;
 import ee.rada8.back_rada8.forum.dtos.MessageDto;
 import ee.rada8.back_rada8.forum.dtos.ReceivedMessageDto;
-
 import ee.rada8.back_rada8.forum.dtos.UserDto;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 
-import java.text.DateFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
-import static jakarta.xml.bind.DatatypeConverter.parseString;
+import static ee.rada8.back_rada8.domain.MessageStatus.TRASH;
+
 
 @Service
 public class ConversationMessagesService {
 
     @Resource
     private MessageReceiverService messageReceiverService;
+
+    @Resource
+    private MessageService messageService;
 
     @Resource
     private UserMapper userMapper;
@@ -41,6 +43,12 @@ public class ConversationMessagesService {
 
     @Resource
     private ConversationMapper conversationMapper;
+
+    public void deleteMessage(Integer messageId) {
+        Message message = messageService.getMessage(messageId);
+        message.setStatus(TRASH);
+        messageService.saveMessage(message);
+    }
 
     public List<ReceivedMessageDto> getUserConversationsWithMessages(Integer userId) throws ParseException {
 
@@ -77,19 +85,16 @@ public class ConversationMessagesService {
     private void addMessageDtoToReceivedMessageDto(MessageReceiver messageReceiverEntry, ReceivedMessageDto receivedMessageDto) throws ParseException {
         Message message = messageReceiverEntry.getMessage();
 
-
-
         MessageDto messageDto = messageMapper.toDto(message);
         receivedMessageDto.setMessageId(messageDto.getMessageId());
         receivedMessageDto.setBody(messageDto.getBody());
 
-
-//        DateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSSSSSSS");
         String outputFormat = "dd/MM/yyyy HH:mm";
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(outputFormat).withZone(ZoneId.systemDefault());
         String formattedTimestamp = formatter.format(message.getDatetime());
 
         receivedMessageDto.setDateTime(formattedTimestamp);
+        receivedMessageDto.setStatus(messageDto.getStatus());
 
     }
 }

@@ -9,7 +9,9 @@ public interface MessageMapper {
     @Mapping(source = "id", target = "messageId")
     @Mapping(source = "body", target = "body")
     @Mapping(source = "datetime", target = "dateTime")
+    @Mapping(source = "status", target = "status")
     MessageDto toDto(Message message);
 
 
+    Message updateMessage(MessageDto messageDto, @MappingTarget Message message);
 }

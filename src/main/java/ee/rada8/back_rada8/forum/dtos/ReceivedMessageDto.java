@@ -18,6 +18,8 @@ public class ReceivedMessageDto {
 //    private String picture;
     private String dateTime;
 
+    private String status;
+
     private Integer advertisementId;
 
 }
