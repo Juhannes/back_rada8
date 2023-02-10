@@ -12,7 +12,7 @@ public interface MessageMapper {
     @Mapping(source = "id", target = "messageId")
     @Mapping(source = "body", target = "body")
     @Mapping(source = "datetime", target = "dateTime")
-    @Mapping(source = "", target = "conversationId")
+//    @Mapping(source = "", target = "conversationId")
     MessageDto toDto(Message message);
 
     List<MessageDto> toDtos(List<Message> messages);
