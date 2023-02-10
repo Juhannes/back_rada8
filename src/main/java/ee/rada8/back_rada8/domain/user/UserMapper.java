@@ -15,7 +15,7 @@ public interface UserMapper {
     User toEntity(UserDto userDto);
 
     @Mapping(source = "id", target = "userId")
-    @Mapping(source = "role.name", target = "userName")
+    @Mapping(source = "role.name", target = "roleName")
     @Mapping(source = "email", target = "email")
     LoginResponse toDto(User user);
 

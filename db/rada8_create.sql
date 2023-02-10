@@ -75,6 +75,7 @@ CREATE TABLE "user" (
                         email varchar(255)  NOT NULL,
                         role_id int  NOT NULL,
                         CONSTRAINT user_ak_1 UNIQUE (username) NOT DEFERRABLE  INITIALLY IMMEDIATE,
+                        CONSTRAINT email UNIQUE (email) NOT DEFERRABLE  INITIALLY IMMEDIATE,
                         CONSTRAINT user_pk PRIMARY KEY (id)
 );
 
