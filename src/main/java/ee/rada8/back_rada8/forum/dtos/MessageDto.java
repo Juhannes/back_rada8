@@ -1,6 +1,6 @@
 package ee.rada8.back_rada8.forum.dtos;
 
-import ee.rada8.back_rada8.domain.User;
+import ee.rada8.back_rada8.domain.user.User;
 import lombok.Data;
 
 @Data

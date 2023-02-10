@@ -1,5 +1,6 @@
-package ee.rada8.back_rada8.domain;
+package ee.rada8.back_rada8.domain.user;
 
+import ee.rada8.back_rada8.domain.Role;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;

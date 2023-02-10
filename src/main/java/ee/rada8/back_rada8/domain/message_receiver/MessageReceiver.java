@@ -1,6 +1,6 @@
 package ee.rada8.back_rada8.domain.message_receiver;
 
-import ee.rada8.back_rada8.domain.User;
+import ee.rada8.back_rada8.domain.user.User;
 import ee.rada8.back_rada8.domain.conversation.Conversation;
 import ee.rada8.back_rada8.domain.message.Message;
 import jakarta.persistence.*;
