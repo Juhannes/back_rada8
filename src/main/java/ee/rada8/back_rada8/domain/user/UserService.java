@@ -15,6 +15,7 @@ public class UserService {
     @Resource
     private UserRepository userRepository;
 
+
     public User findUser(String username, String password) {
         Optional<User> optionalUser = userRepository.findUser(username, password);
 
@@ -22,4 +23,7 @@ public class UserService {
     }
 
 
+    public void saveNewUser(User user) {
+        userRepository.save(user);
+    }
 }
