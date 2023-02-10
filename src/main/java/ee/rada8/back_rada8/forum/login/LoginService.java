@@ -18,6 +18,6 @@ private UserMapper userMapper;
     public LoginResponse login(String username, String password) {
         User user = userService.findUser(username, password);
 
-        return userMapper.toDto(user);
+        return userMapper.toLoginDto(user);
     }
 }
