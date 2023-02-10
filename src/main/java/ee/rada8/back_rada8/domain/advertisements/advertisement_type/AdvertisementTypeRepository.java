@@ -1,4 +1,4 @@
-package ee.rada8.back_rada8.domain.advertisements;
+package ee.rada8.back_rada8.domain.advertisements.advertisement_type;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

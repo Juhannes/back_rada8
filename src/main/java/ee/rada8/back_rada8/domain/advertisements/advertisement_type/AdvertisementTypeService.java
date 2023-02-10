@@ -1,4 +1,4 @@
-package ee.rada8.back_rada8.domain.advertisements;
+package ee.rada8.back_rada8.domain.advertisements.advertisement_type;
 
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;

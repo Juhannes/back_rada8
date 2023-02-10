@@ -1,8 +1,8 @@
 package ee.rada8.back_rada8.forum.advertisements;
 
-import ee.rada8.back_rada8.domain.advertisements.AdvertisementType;
-import ee.rada8.back_rada8.domain.advertisements.AdvertisementTypeMapper;
-import ee.rada8.back_rada8.domain.advertisements.AdvertisementTypeService;
+import ee.rada8.back_rada8.domain.advertisements.advertisement_type.AdvertisementType;
+import ee.rada8.back_rada8.domain.advertisements.advertisement_type.AdvertisementTypeMapper;
+import ee.rada8.back_rada8.domain.advertisements.advertisement_type.AdvertisementTypeService;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 

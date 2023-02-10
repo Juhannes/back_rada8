@@ -2,13 +2,12 @@ package ee.rada8.back_rada8.domain.advertisements;
 
 import ee.rada8.back_rada8.domain.City;
 import ee.rada8.back_rada8.domain.User;
+import ee.rada8.back_rada8.domain.advertisements.advertisement_type.AdvertisementType;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
-
-import java.time.Instant;
 
 @Getter
 @Setter
@@ -45,16 +44,13 @@ public class Advertisement {
     @JoinColumn(name = "city_id", nullable = false)
     private City city;
 
-    @NotNull
     @Column(name = "created_timestamp", nullable = false)
     private String createdTimestamp;
 
-    @NotNull
     @Column(name = "edited_timestamp", nullable = false)
     private String editedTimestamp;
 
     @Size(max = 1)
-    @NotNull
     @Column(name = "status", nullable = false, length = 1)
     private String status;
 
