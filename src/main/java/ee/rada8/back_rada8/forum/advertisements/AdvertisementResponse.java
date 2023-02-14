@@ -11,7 +11,7 @@ import java.io.Serializable;
  * A DTO for the {@link Advertisement} entity
  */
 @Data
-public class AdvertisementDto implements Serializable {
+public class AdvertisementResponse implements Serializable {
     private final Integer id;
     private final Integer userId;
     @Size(max = 255)
