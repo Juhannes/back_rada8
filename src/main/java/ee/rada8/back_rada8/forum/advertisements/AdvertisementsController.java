@@ -26,6 +26,13 @@ public class AdvertisementsController {
         advertisementsService.editAdvertisement(advertisementId, advertisementDto);
     }
 
+    @GetMapping("/advertisements")
+    @Operation(summary = "Returns all advertisements", description = "Returns all advertisements by id")
+    public List<AdvertisementDto> getAllAdvertisements() {
+        List<AdvertisementDto> advertisements = advertisementsService.getAllAdvertisements();
+        return advertisements;
+    }
+
     @GetMapping("/my-advertisements")
     @Operation(summary = "Returns advertisements", description = "Returns advertisements by userId and typeId")
     public List<AdvertisementDto> getAdvertisements(@RequestParam Integer userId, @RequestParam Integer typeId) {

@@ -11,4 +11,6 @@ public interface AdvertisementRepository extends JpaRepository<Advertisement, In
     List<Advertisement> findByUserIdAndTypeId(Integer userId, Integer typeId);
 
 
+    @Override
+    List<Advertisement> findAll();
 }

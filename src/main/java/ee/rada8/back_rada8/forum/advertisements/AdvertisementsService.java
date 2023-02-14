@@ -3,6 +3,7 @@ package ee.rada8.back_rada8.forum.advertisements;
 import ee.rada8.back_rada8.domain.advertisements.Advertisement;
 import ee.rada8.back_rada8.domain.advertisements.AdvertisementMapper;
 import ee.rada8.back_rada8.domain.advertisements.AdvertisementService;
+import ee.rada8.back_rada8.forum.Status;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -61,8 +62,10 @@ public class AdvertisementsService {
         advertisementService.saveAdvertisement(advertisement);
     }
 
-    public AdvertisementResponse getAdvertisement(Integer advertisementId) {
-        Advertisement advertisement = advertisementService.findAdvertisement(advertisementId);
-        return advertisementMapper.toResponse(advertisement);
+
+    public List<AdvertisementDto> getAllAdvertisements() {
+        List<Advertisement> allAdvertisements = advertisementService.findAllAdvertisements();
+        List<AdvertisementDto> advertisementDtos = advertisementMapper.toDtos(allAdvertisements);
+        return advertisementDtos;
     }
 }
