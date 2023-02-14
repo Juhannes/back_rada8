@@ -61,4 +61,11 @@ public class AdvertisementsService {
         //salvestab advertisementi
         advertisementService.saveAdvertisement(advertisement);
     }
+
+
+    public List<AdvertisementDto> getAllAdvertisements() {
+        List<Advertisement> allAdvertisements = advertisementService.findAllAdvertisements();
+        List<AdvertisementDto> advertisementDtos = advertisementMapper.toDtos(allAdvertisements);
+        return advertisementDtos;
+    }
 }
