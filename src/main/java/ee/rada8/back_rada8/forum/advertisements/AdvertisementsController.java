@@ -1,6 +1,5 @@
 package ee.rada8.back_rada8.forum.advertisements;
 
-import ee.rada8.back_rada8.domain.advertisements.Advertisement;
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.*;
@@ -32,6 +31,13 @@ public class AdvertisementsController {
     public List<AdvertisementDto> getAdvertisements(@RequestParam Integer userId, @RequestParam Integer typeId) {
         List<AdvertisementDto> advertisements = advertisementsService.getAdvertisements(userId, typeId);
         return advertisements;
+    }
+
+    @GetMapping("/my-advertisement")
+    @Operation(summary = "Returns advertisement by advertisementId", description = "Returns advertisement by advertisementId")
+    public AdvertisementResponse getAdvertisementById(@RequestParam Integer advertisementId) {
+        AdvertisementResponse advertisement = advertisementsService.getAdvertisement(advertisementId);
+        return advertisement;
     }
 
     @GetMapping("/my-advertisements-types")
