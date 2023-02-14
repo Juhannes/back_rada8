@@ -4,9 +4,13 @@ import ee.rada8.back_rada8.domain.advertisements.Advertisement;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.time.Instant;
 
+@Getter
+@Setter
 @Entity
 @Table(name = "conversation")
 public class Conversation {
@@ -28,36 +32,5 @@ public class Conversation {
     @JoinColumn(name = "advertisement_id")
     private Advertisement advertisement;
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public Instant getDatetime() {
-        return datetime;
-    }
-
-    public void setDatetime(Instant datetime) {
-        this.datetime = datetime;
-    }
-
-    public String getSubject() {
-        return subject;
-    }
-
-    public void setSubject(String subject) {
-        this.subject = subject;
-    }
-
-    public Advertisement getAdvertisement() {
-        return advertisement;
-    }
-
-    public void setAdvertisement(Advertisement advertisement) {
-        this.advertisement = advertisement;
-    }
 
 }
