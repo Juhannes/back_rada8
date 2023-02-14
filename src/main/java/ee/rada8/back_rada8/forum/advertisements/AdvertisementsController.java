@@ -30,8 +30,8 @@ public class AdvertisementsController {
     @GetMapping("/advertisements")
     @Operation(summary = "Returns all advertisements", description = "Returns all advertisements by id")
     public List<AdvertisementDto> getAllAdvertisements() {
-        List<AdvertisementDto> allAdvertisements = advertisementsService.getAllAdvertisements();
-        return allAdvertisements;
+        List<AdvertisementDto> advertisements = advertisementsService.getAllAdvertisements();
+        return advertisements;
     }
 
     @GetMapping("/my-advertisements")
