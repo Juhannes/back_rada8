@@ -10,8 +10,6 @@ import java.util.List;
 
 @Service
 public class MessageReceiverService {
-    @Resource
-    private MessageMapper messageMapper;
 
     @Resource
     private MessageService messageService;
@@ -29,11 +27,5 @@ public class MessageReceiverService {
         }
 
         return messageReceivers;
-    }
-
-    public MessageReceiver getMessageReceiver(Integer messageId) {
-
-        return messageReceiverRepository.findByMessage(messageId);
-
     }
 }

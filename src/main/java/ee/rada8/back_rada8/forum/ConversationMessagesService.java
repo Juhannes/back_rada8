@@ -1,6 +1,5 @@
 package ee.rada8.back_rada8.forum;
 
-import ee.rada8.back_rada8.domain.MessageStatus;
 import ee.rada8.back_rada8.domain.conversation.Conversation;
 import ee.rada8.back_rada8.domain.conversation.ConversationMapper;
 import ee.rada8.back_rada8.domain.message.Message;
@@ -82,7 +81,7 @@ public class ConversationMessagesService {
         receivedMessageDto.setAdvertisementId(conversationDto.getAdvertisementId());
     }
 
-    private void addMessageDtoToReceivedMessageDto(MessageReceiver messageReceiverEntry, ReceivedMessageDto receivedMessageDto) throws ParseException {
+    private void addMessageDtoToReceivedMessageDto(MessageReceiver messageReceiverEntry, ReceivedMessageDto receivedMessageDto) {
         Message message = messageReceiverEntry.getMessage();
 
         MessageDto messageDto = messageMapper.toDto(message);
