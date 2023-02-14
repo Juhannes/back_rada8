@@ -35,7 +35,7 @@ public class AdvertisementsService {
 
     }
 
-    private Advertisement getEditedAdvertisement(Integer advertisementId, AdvertisementDto advertisementDto) {
+    public Advertisement getEditedAdvertisement(Integer advertisementId, AdvertisementDto advertisementDto) {
         Advertisement advertisement = advertisementService.findAdvertisement(advertisementId);
         advertisementMapper.updateAdvertisement(advertisementDto, advertisement);
         return advertisement;
