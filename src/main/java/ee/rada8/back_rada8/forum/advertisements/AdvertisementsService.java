@@ -62,7 +62,10 @@ public class AdvertisementsService {
         advertisementService.saveAdvertisement(advertisement);
     }
 
-
+    public AdvertisementResponse getAdvertisement(Integer advertisementId) {
+        Advertisement advertisement = advertisementService.findAdvertisement(advertisementId);
+        return advertisementMapper.toResponse(advertisement);
+    }
     public List<AdvertisementDto> getAllAdvertisements() {
         List<Advertisement> allAdvertisements = advertisementService.findAllAdvertisements();
         List<AdvertisementDto> advertisementDtos = advertisementMapper.toDtos(allAdvertisements);
