@@ -34,6 +34,7 @@ public interface AdvertisementMapper {
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     Advertisement updateAdvertisement(AdvertisementDto advertisementDto, @MappingTarget Advertisement advertisement);
 
+    @Mapping(source = "id", target = "advertisementId")
     @Mapping(source = "user.id", target = "userId")
     @Mapping(source = "header", target = "header")
     @Mapping(source = "body", target = "body")

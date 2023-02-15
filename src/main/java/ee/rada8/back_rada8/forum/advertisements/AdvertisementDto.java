@@ -4,6 +4,7 @@ import lombok.Data;
 
 @Data
 public class AdvertisementDto {
+    private Integer advertisementId;
     private Integer userId;
     private String header;
     private String body;
