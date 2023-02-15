@@ -12,11 +12,8 @@ import java.util.List;
 public interface AdvertisementMapper {
 
     @Mapping(source = "id", target = "id")
-    @Mapping(source = "userId", target = "user.id")
     @Mapping(source = "header", target = "header")
     @Mapping(source = "body", target = "body")
-    @Mapping(source = "typeId", target = "type.id")
-    @Mapping(source = "cityId", target = "city.id")
     @Mapping(source = "createdTimestamp", target = "createdTimestamp")
     @Mapping(source = "editedTimestamp", target = "editedTimestamp")
     @Mapping(source = "status", target = "status")

@@ -12,4 +12,10 @@ public class AdvertisementTypeService {
     public List<AdvertisementType> findAllAdvertisementTypes() {
         return advertisementTypeRepository.findAll();
     }
+
+    public AdvertisementType findAdvertisementType(Integer advertisementTypeId) {
+        return advertisementTypeRepository.findById(advertisementTypeId).get();
+    }
+
+
 }

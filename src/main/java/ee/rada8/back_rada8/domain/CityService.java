@@ -16,7 +16,9 @@ public class CityService {
     public List<CityDto> findCities() {
         List<City> cities = cityRepository.findAll();
         return cityMapper.toDtos(cities);
-
     }
-    //mapperiga entity to Dto
+
+    public City findCity(Integer cityId) {
+        return cityRepository.findById(cityId).get();
+    }
 }
