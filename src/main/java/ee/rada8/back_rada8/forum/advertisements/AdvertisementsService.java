@@ -7,6 +7,8 @@ import ee.rada8.back_rada8.domain.advertisements.AdvertisementMapper;
 import ee.rada8.back_rada8.domain.advertisements.AdvertisementService;
 import ee.rada8.back_rada8.domain.advertisements.advertisement_type.AdvertisementType;
 import ee.rada8.back_rada8.domain.advertisements.advertisement_type.AdvertisementTypeService;
+import ee.rada8.back_rada8.domain.user.User;
+import ee.rada8.back_rada8.domain.user.UserService;
 import ee.rada8.back_rada8.forum.Status;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
@@ -29,11 +31,24 @@ public class AdvertisementsService {
     private AdvertisementTypeService advertisementTypeService;
     @Resource
     private CityService cityService;
+    @Resource
+    private UserService userService;
 
     @Transactional
     public void addAdvertisement(AdvertisementDto advertisementDto) {
-        Advertisement advertisement = advertisementMapper.toEntity(advertisementDto);
+        Advertisement advertisement = createAdvertisement(advertisementDto);
         advertisementService.saveAdvertisement(advertisement);
+    }
+
+    private Advertisement createAdvertisement(AdvertisementDto advertisementDto) {
+        Advertisement advertisement = advertisementMapper.toEntity(advertisementDto);
+        City city = cityService.findCity(advertisementDto.getCityId());
+        advertisement.setCity(city);
+        AdvertisementType advertisementType = advertisementTypeService.findAdvertisementType(advertisementDto.getTypeId());
+        advertisement.setType(advertisementType);
+        User user = userService.findUser(advertisementDto.getUserId());
+        advertisement.setUser(user);
+        return advertisement;
     }
 
     public void editAdvertisement(Integer advertisementId, AdvertisementDto advertisementDto) {
@@ -48,6 +63,8 @@ public class AdvertisementsService {
         advertisementMapper.updateAdvertisement(advertisementDto, advertisement);
         updateCityIfChanged(advertisementDto.getCityId(), advertisement);
         updateTypeIfChanged(advertisementDto.getTypeId(), advertisement);
+        User user = userService.findUser(advertisementDto.getUserId());
+        advertisement.setUser(user);
         return advertisement;
     }
 
