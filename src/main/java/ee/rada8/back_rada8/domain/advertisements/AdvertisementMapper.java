@@ -14,8 +14,6 @@ public interface AdvertisementMapper {
     @Mapping(source = "id", target = "id")
     @Mapping(source = "header", target = "header")
     @Mapping(source = "body", target = "body")
-    @Mapping(source = "createdTimestamp", target = "createdTimestamp")
-    @Mapping(source = "editedTimestamp", target = "editedTimestamp")
     @Mapping(source = "status", target = "status")
     @Mapping(source = "picture", target = "picture", qualifiedByName = "stringToByteArray")
     Advertisement toEntity(AdvertisementDto advertisementDto);
