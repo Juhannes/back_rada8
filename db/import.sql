@@ -70,3 +70,7 @@ INSERT INTO public.message (id, body, datetime, picture, status) VALUES (DEFAULT
 INSERT INTO public.message_receiver (id, conversation_id, message_id, sender_id, receiver_id) VALUES (DEFAULT, 1, 1, 2, 3);
 INSERT INTO public.message_receiver (id, conversation_id, message_id, sender_id, receiver_id) VALUES (DEFAULT, 2, 2, 3, 2);
 INSERT INTO public.message_receiver (id, conversation_id, message_id, sender_id, receiver_id) VALUES (DEFAULT, 3, 3, 2, 3);
+
+INSERT INTO public.advertisement (id, user_id, header, body, type_id, city_id, created_timestamp, edited_timestamp, status, picture) VALUES (DEFAULT, 2, 'Otsin bändi Tallinnas', 'Oskan laulda', 1, 1, '2023-02-16 10:17:31.000000', '2023-02-16 10:17:33.000000', 'A', null);
+INSERT INTO public.advertisement (id, user_id, header, body, type_id, city_id, created_timestamp, edited_timestamp, status, picture) VALUES (DEFAULT, 3, 'Otsime bassimeest', 'Järgmisel nädalal live', 2, 2, '2023-02-16 10:18:44.000000', '2023-02-16 10:18:45.000000', 'A', null);
+INSERT INTO public.advertisement (id, user_id, header, body, type_id, city_id, created_timestamp, edited_timestamp, status, picture) VALUES (DEFAULT, 3, 'Müün parmupilli', 'Kasutamata parmupill 20 euri', 3, 2, '2023-02-16 10:19:51.000000', '2023-02-16 10:19:52.000000', 'A', null);
