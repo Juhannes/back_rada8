@@ -12,19 +12,19 @@ import java.io.Serializable;
  */
 @Data
 public class AdvertisementResponse implements Serializable {
-    private final Integer id;
-    private final Integer userId;
+    private Integer id;
+    private Integer userId;
     @Size(max = 255)
     @NotNull
-    private final String header;
+    private String header;
     @Size(max = 1000)
     @NotNull
-    private final String body;
-    private final Integer typeId;
-    private final Integer cityId;
-    private final String createdTimestamp;
-    private final String editedTimestamp;
+    private String body;
+    private Integer typeId;
+    private Integer cityId;
+    private String createdTimestamp;
+    private String editedTimestamp;
     @Size(max = 1)
-    private final String status;
-    private final String picture;
+    private String status;
+    private String picture;
 }

@@ -9,6 +9,8 @@ import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.Instant;
+
 @Getter
 @Setter
 @Entity
@@ -44,11 +46,13 @@ public class Advertisement {
     @JoinColumn(name = "city_id", nullable = false)
     private City city;
 
+    @NotNull
     @Column(name = "created_timestamp", nullable = false)
-    private String createdTimestamp;
+    private Instant createdTimestamp;
 
+    @NotNull
     @Column(name = "edited_timestamp", nullable = false)
-    private String editedTimestamp;
+    private Instant editedTimestamp;
 
     @Size(max = 1)
     @Column(name = "status", nullable = false, length = 1)

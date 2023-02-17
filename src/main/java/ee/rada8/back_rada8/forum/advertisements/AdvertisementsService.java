@@ -14,6 +14,7 @@ import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.Instant;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -48,12 +49,16 @@ public class AdvertisementsService {
         advertisement.setType(advertisementType);
         User user = userService.findUser(advertisementDto.getUserId());
         advertisement.setUser(user);
+        advertisement.setCreatedTimestamp(Instant.now());
+        advertisement.setEditedTimestamp(Instant.now());
         return advertisement;
     }
 
     public void editAdvertisement(Integer advertisementId, AdvertisementDto advertisementDto) {
         //leia Id järgi ad ja uuenda
         Advertisement advertisement = getEditedAdvertisement(advertisementId, advertisementDto);
+        advertisement.setEditedTimestamp(Instant.now());
+
         //salvesta ad
         advertisementService.saveAdvertisement(advertisement);
     }
