@@ -10,6 +10,7 @@ public class AdvertisementDto {
     private String body;
     private Integer typeId;
     private Integer cityId;
+    private String cityName;
     private String createdTimestamp;
     private String modifiedTimestamp;
     private String status;

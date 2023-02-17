@@ -40,11 +40,13 @@ public interface AdvertisementMapper {
     @Mapping(source = "body", target = "body")
     @Mapping(source = "type.id", target = "typeId")
     @Mapping(source = "city.id", target = "cityId")
+    @Mapping(source = "city.name", target = "cityName")
     @Mapping(source = "createdTimestamp", target = "createdTimestamp")
     @Mapping(source = "editedTimestamp", target = "modifiedTimestamp")
     @Mapping(source = "status", target = "status")
     @Mapping(expression = "java(PictureUtil.byteArrayToString(advertisement.getPicture()))", target = "picture")
     AdvertisementDto toDto(Advertisement advertisement);
+
 
     List<AdvertisementDto> toDtos(List<Advertisement> advertisements);
 }
