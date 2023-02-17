@@ -8,8 +8,6 @@ import java.util.List;
 @Service
 public class AdvertisementService {
 
-
-
     @Resource
     private AdvertisementRepository advertisementRepository;
 
@@ -22,12 +20,10 @@ public class AdvertisementService {
     }
 
     public List<Advertisement> findAdvertisements(Integer userId, Integer typeId) {
-        List<Advertisement> advertisement = advertisementRepository.findByUserIdAndTypeId(userId, typeId);
-        return advertisement;
+        return advertisementRepository.findByUserIdAndTypeId(userId, typeId);
     }
 
     public List<Advertisement> findAllAdvertisements() {
-        List<Advertisement> allAdvertisements = advertisementRepository.findAll();
-        return allAdvertisements;
+        return advertisementRepository.findAll();
     }
 }

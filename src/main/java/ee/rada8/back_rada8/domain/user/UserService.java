@@ -1,5 +1,6 @@
 package ee.rada8.back_rada8.domain.user;
 
+import ee.rada8.back_rada8.forum.dtos.UserDto;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +15,9 @@ public class UserService {
     @Resource
     private UserRepository userRepository;
 
+    @Resource
+    private UserMapper userMapper;
+
 
     public User findUser(String username, String password) {
         Optional<User> optionalUser = userRepository.findUser(username, password);
@@ -27,7 +31,11 @@ public class UserService {
     }
 
     public User findUser(Integer userId) {
-        User user = userRepository.findById(userId).get();
-        return user;
+        return userRepository.findById(userId).get();
     }
+
+    public UserDto findUserBy(Integer userId) {
+        return userMapper.toDto(userRepository.findById(userId).get());
+    }
+
 }

@@ -3,9 +3,7 @@ package ee.rada8.back_rada8.domain.message_receiver;
 import lombok.Data;
 
 @Data
-public class ReplyMessage {
-
-    private Long id;
+public class IncomingMessage {
 
     private Integer senderId;
 
@@ -13,6 +11,6 @@ public class ReplyMessage {
 
     private Integer conversationId;
 
-    private String replyBody;
+    private String messageBody;
 
 }

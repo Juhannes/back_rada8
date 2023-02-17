@@ -1,7 +1,7 @@
-package ee.rada8.back_rada8.forum;
+package ee.rada8.back_rada8.forum.conversations;
 
 import ee.rada8.back_rada8.domain.message.MessageService;
-import ee.rada8.back_rada8.domain.message_receiver.ReplyMessage;
+import ee.rada8.back_rada8.domain.message_receiver.IncomingMessage;
 import ee.rada8.back_rada8.forum.dtos.MessageDto;
 import ee.rada8.back_rada8.forum.dtos.ReceivedMessageDto;
 import io.swagger.v3.oas.annotations.Operation;
@@ -22,9 +22,8 @@ public class ConversationMessagesController {
 
     @GetMapping("/message")
     @Operation(summary = "Returns all user's messages", description = "Finds all messages where user is receiver")
-    public List<ReceivedMessageDto> getUserMessages(@RequestParam Integer userId) throws ParseException {
-        List<ReceivedMessageDto> conversations = conversationMessagesService.getUserConversationsWithMessages(userId);
-        return conversations;
+    public List<ReceivedMessageDto> getUserMessages(@RequestParam Integer userId) {
+        return conversationMessagesService.getUserConversationsWithMessages(userId);
     }
 
     @DeleteMapping("/message")
@@ -41,8 +40,14 @@ public class ConversationMessagesController {
 
     @PostMapping("/message/reply")
     @Operation(summary = "Replying to an incoming message", description = "Inserts a new message to conversation_receiver")
-    public void replyToMessage(@RequestBody ReplyMessage replyMessage) {
+    public void replyToMessage(@RequestBody IncomingMessage replyMessage) {
         messageService.replyToMessage(replyMessage);
     }
 
+    @PostMapping("/message/new-message")
+    @Operation(summary = "Send a new message to advertisment", description = "If conversation exists, replys to old conversation, " +
+            "if doesnt exist, creates a new conversation")
+    public void newMessage(@RequestParam Integer advertisementId, @RequestBody IncomingMessage newIncomingMessage) {
+        conversationMessagesService.newMessage(advertisementId, newIncomingMessage);
+    }
 }

@@ -9,8 +9,8 @@ public interface MessageReceiverRepository extends JpaRepository<MessageReceiver
     @Query("select m from MessageReceiver m where m.receiver.id = ?1 order by m.conversation.id")
     List<MessageReceiver> findMessageReceiverEntries(Integer receiverId);
 
-    @Query("select m from MessageReceiver m where m.message.id = ?1")
-    MessageReceiver findByMessage(Integer messageId);
+    @Query("select m from MessageReceiver m where m.conversation.id = ?1 and m.sender.id = ?2")
+    List<MessageReceiver> findConversationBy(Integer conversationId, Integer senderId);
 
 
 
