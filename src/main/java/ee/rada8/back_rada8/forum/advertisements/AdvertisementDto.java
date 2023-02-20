@@ -22,6 +22,7 @@ public class AdvertisementDto implements Serializable {
     private String body;
     private Integer typeId;
     private Integer cityId;
+    private String cityName;
     private String createdTimestamp;
     private String editedTimestamp;
     @Size(max = 1)

@@ -111,9 +111,15 @@ public class AdvertisementsService {
         Advertisement advertisement = advertisementService.findAdvertisement(advertisementId);
         return advertisementMapper.toResponse(advertisement);
     }
-    public List<AdvertisementDto> getAllAdvertisements() {
-        List<Advertisement> allAdvertisements = advertisementService.findAllAdvertisements();
-        List<AdvertisementDto> advertisementDtos = advertisementMapper.toDtos(allAdvertisements);
+    public List<AdvertisementDto> getAllActiveAdvertisements(String status) {
+        List<Advertisement> allActiveAdvertisements = advertisementService.findAllActiveAdvertisements(status);
+        List<AdvertisementDto> advertisementDtos = advertisementMapper.activeAdvertisementsDtos(allActiveAdvertisements);
+        return  advertisementDtos;
+    }
+
+    public List<AdvertisementDto> getSortedAdvetisements(Integer cityId, Integer typeId, String status) {
+        List<Advertisement> sortedAdvertisements = advertisementService.getSortedAdvertisements(cityId, typeId, status);
+        List<AdvertisementDto> advertisementDtos = advertisementMapper.toDtos(sortedAdvertisements);
         return advertisementDtos;
     }
 }
