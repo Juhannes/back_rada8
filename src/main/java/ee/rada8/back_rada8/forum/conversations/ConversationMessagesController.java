@@ -22,7 +22,7 @@ public class ConversationMessagesController {
 
     @GetMapping("/message")
     @Operation(summary = "Returns all user's messages", description = "Finds all messages where user is receiver")
-    public List<ReceivedMessageDto> getUserMessages(@RequestParam Integer userId) {
+    public List<List<ReceivedMessageDto>> getUserMessages(@RequestParam Integer userId) {
         return conversationMessagesService.getUserConversationsWithMessages(userId);
     }
 

@@ -62,20 +62,36 @@ public class ConversationMessagesService {
         messageService.saveMessage(message);
     }
 
-    public List<ReceivedMessageDto> getUserConversationsWithMessages(Integer userId) {
+    public List<List<ReceivedMessageDto>> getUserConversationsWithMessages(Integer userId) {
 
         // Sõnumi sisu leidmine ja lisamine messageDtos'sse: messageId, body, dateTime
-        List<MessageReceiver> receivedConversationData = messageReceiverService.getReceivedConversations(userId);
-        List<ReceivedMessageDto> receivedMessageDtos = new ArrayList<>();
+        List<List<MessageReceiver>> receivedConversationGroups = messageReceiverService.getReceivedConversations(userId);
+        List<List<ReceivedMessageDto>> messageGroupsDtos = new ArrayList<>();
 
-        for (MessageReceiver receivedConversation : receivedConversationData) {
+        for (List<MessageReceiver> receivedConversationGroup : receivedConversationGroups) {
+            List<ReceivedMessageDto> messageGroupDtos = new ArrayList<>();
+
+            for (MessageReceiver receivedConversation : receivedConversationGroup) {
             ReceivedMessageDto receivedMessageDto = new ReceivedMessageDto();
             addMessageDtoToReceivedMessageDto(receivedConversation, receivedMessageDto);
             addConversationDtoToReceivedMessageDto(receivedConversation, receivedMessageDto);
             addUserDtoToReceivedMessageDto(receivedConversation, receivedMessageDto);
-            receivedMessageDtos.add(receivedMessageDto);
+            messageGroupDtos.add(receivedMessageDto);
+            }
+            messageGroupsDtos.add(messageGroupDtos);
         }
-        return receivedMessageDtos;
+
+//
+//        for (MessageReceiver receivedConversation : receivedConversationGroups) {
+//            ReceivedMessageDto receivedMessageDto = new ReceivedMessageDto();
+//            addMessageDtoToReceivedMessageDto(receivedConversation, receivedMessageDto);
+//            addConversationDtoToReceivedMessageDto(receivedConversation, receivedMessageDto);
+//            addUserDtoToReceivedMessageDto(receivedConversation, receivedMessageDto);
+//            receivedMessageDtos.add(receivedMessageDto);
+//        }
+//        return receivedMessageDtos;
+
+        return messageGroupsDtos;
     }
 
     public void addUserDtoToReceivedMessageDto(MessageReceiver receivedConversation, ReceivedMessageDto receivedMessageDto) {
@@ -95,6 +111,7 @@ public class ConversationMessagesService {
     public void addMessageDtoToReceivedMessageDto(MessageReceiver messageReceiverEntry, ReceivedMessageDto receivedMessageDto) {
         Message message = messageReceiverEntry.getMessage();
 
+
         MessageDto messageDto = messageMapper.toDto(message);
         receivedMessageDto.setMessageId(messageDto.getMessageId());
         receivedMessageDto.setBody(messageDto.getBody());
@@ -102,7 +119,7 @@ public class ConversationMessagesService {
         String outputFormat = "HH:mm dd/MM/yyyy";
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(outputFormat).withZone(ZoneId.systemDefault());
         String formattedTimestamp = formatter.format(message.getDatetime());
-
+        receivedMessageDto.setPicture(messageDto.getPicture());
         receivedMessageDto.setDateTime(formattedTimestamp);
         receivedMessageDto.setStatus(messageDto.getStatus());
 
