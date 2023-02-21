@@ -99,7 +99,7 @@ public class ConversationMessagesService {
         receivedMessageDto.setMessageId(messageDto.getMessageId());
         receivedMessageDto.setBody(messageDto.getBody());
 
-        String outputFormat = "dd/MM/yyyy HH:mm";
+        String outputFormat = "HH:mm dd/MM/yyyy";
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(outputFormat).withZone(ZoneId.systemDefault());
         String formattedTimestamp = formatter.format(message.getDatetime());
 
