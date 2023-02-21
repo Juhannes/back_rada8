@@ -13,4 +13,6 @@ public class IncomingMessage {
 
     private String messageBody;
 
+    private String picture;
+
 }

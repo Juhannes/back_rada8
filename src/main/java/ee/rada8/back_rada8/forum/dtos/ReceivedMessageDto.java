@@ -15,7 +15,7 @@ public class ReceivedMessageDto {
 
     private String body;
 
-//    private String picture;
+    private String picture;
 
     private String dateTime;
 

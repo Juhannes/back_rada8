@@ -6,6 +6,8 @@ import ee.rada8.back_rada8.domain.message.MessageService;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 @Service
@@ -16,9 +18,10 @@ public class MessageReceiverService {
 
     @Resource
     private MessageReceiverRepository messageReceiverRepository;
-    public List<MessageReceiver> getReceivedConversations(Integer userId) {
+    public List<List<MessageReceiver>> getReceivedConversations(Integer userId) {
 
         List<MessageReceiver> messageReceivers = messageReceiverRepository.findMessageReceiverEntries(userId);
+
         for (MessageReceiver messageReceiver : messageReceivers) {
 
             Integer messageId = messageReceiver.getMessage().getId();
@@ -26,6 +29,44 @@ public class MessageReceiverService {
             messageReceiver.setMessage(message);
         }
 
-        return messageReceivers;
+        List<List<MessageReceiver>> messageGroups = new ArrayList<>();
+
+        if (messageReceivers.size() > 0) {
+            HashSet<Integer> conversationIdHashSet = new HashSet<>();
+
+            for (MessageReceiver receiver : messageReceivers) {
+                if (!conversationIdHashSet.contains(receiver.getConversation().getId())) {
+                    conversationIdHashSet.add(receiver.getConversation().getId());
+                }
+            }
+            List<Integer> uniqueConversationIds = conversationIdHashSet.stream().toList();
+            int len = conversationIdHashSet.size();
+
+            for (int i = 0; i < len; i++) {
+                List<MessageReceiver> messageGroup = new ArrayList<>();
+                for (MessageReceiver messageReceiver : messageReceivers) {
+                    if (messageReceiver.getConversation().getId().equals(uniqueConversationIds.get(i))) {
+                        messageGroup.add(messageReceiver);
+                    }
+                }
+                messageGroups.add(messageGroup);
+            }
+//
+//            MessageReceiver firstReceiver = messageReceivers.get(0);
+//            Integer conversationId = firstReceiver.getConversation().getId();
+//
+//            for (MessageReceiver messageReceiver : messageReceivers) {
+//                if (messageReceiver.getConversation().getId().equals(conversationId)) {
+//                    messageGroup.add(messageReceiver);
+//                } else {
+//                    conversationId = messageReceiver.getConversation().getId();
+//                    messageGroups.add(messageGroup);
+//                    messageGroup.clear();
+//                    messageGroup.add(messageReceiver);
+//                }
+//            }
+        }
+
+        return messageGroups;
     }
 }

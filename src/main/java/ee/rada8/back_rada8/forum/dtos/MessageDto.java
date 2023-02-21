@@ -9,6 +9,8 @@ public class MessageDto {
 
     private String body;
 
+    private String picture;
+
     private String dateTime;
 
     private String status;
