@@ -80,7 +80,7 @@ public class MessageService {
     }
 
     public MessageReceiver createMessageAndMessageReceiver(IncomingMessage incomingMessage) {
-        Integer messageId = createAndSaveMessage(incomingMessage.getMessageBody());
+        Integer messageId = createAndSaveMessage(incomingMessage.getMessageBody(), incomingMessage.getPicture());
 
         MessageReceiver messageReceiver = new MessageReceiver();
         Optional<Message> message = messageRepository.findById(messageId);
@@ -100,10 +100,12 @@ public class MessageService {
     }
 
 
-    public Integer createAndSaveMessage(String messageBody) {
+    public Integer createAndSaveMessage(String messageBody, String picture) {
         MessageDto messageDto = new MessageDto();
         messageDto.setBody(messageBody);
+        messageDto.setPicture(picture);
         messageDto.setStatus(ACTIVE);
+
         Message message = messageMapper.toEntity(messageDto);
         message.setDatetime(Instant.now());
         messageRepository.save(message);

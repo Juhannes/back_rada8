@@ -27,11 +27,20 @@ public class AdvertisementsController {
     }
 
     @GetMapping("/advertisements")
-    @Operation(summary = "Returns all advertisements", description = "Returns all advertisements by id")
-    public List<AdvertisementDto> getAllAdvertisements() {
-        List<AdvertisementDto> advertisements = advertisementsService.getAllAdvertisements();
-        return advertisements;
+    @Operation(summary = "Returns all active advertisements", description = "Returns all advertisements by status")
+    public List<AdvertisementDto> getAllActiveAdvertisements(@RequestParam String status) {
+        List<AdvertisementDto> allActiveAdvertisements = advertisementsService.getAllActiveAdvertisements(status);
+        return allActiveAdvertisements;
     }
+
+    @GetMapping("/advertisement-location-type")
+    @Operation(summary = "Returns advertisements by locationId and typeID", description = "Returns advertisements by cityId and typeId")
+    public List<AdvertisementDto> sortedAdvertisements(@RequestParam Integer cityId, @RequestParam Integer typeId, @RequestParam String status) {
+        return advertisementsService.getSortedAdvetisements(cityId, typeId, status);
+    }
+
+
+
 
     @GetMapping("/my-advertisements")
     @Operation(summary = "Returns advertisements", description = "Returns advertisements by userId and typeId")

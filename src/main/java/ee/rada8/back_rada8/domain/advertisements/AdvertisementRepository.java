@@ -11,6 +11,17 @@ public interface AdvertisementRepository extends JpaRepository<Advertisement, In
     List<Advertisement> findByUserIdAndTypeId(Integer userId, Integer typeId);
 
 
-    @Override
-    List<Advertisement> findAll();
+
+
+    @Query("select a from Advertisement a where a.status = ?1 order by a.editedTimestamp DESC")
+    List<Advertisement> findAllActiveAdvertisements(String status);
+
+
+
+
+
+
+    @Query("select a from Advertisement a where a.city.id = ?1 and a.type.id = ?2 and a.status = ?3 order by a.editedTimestamp DESC")
+    List<Advertisement> findActiveAdvertisements(Integer id, Integer id1, String status);
+
 }

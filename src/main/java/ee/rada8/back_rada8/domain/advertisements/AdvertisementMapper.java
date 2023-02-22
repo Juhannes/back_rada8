@@ -36,6 +36,7 @@ public interface AdvertisementMapper {
     @Mapping(source = "body", target = "body")
     @Mapping(source = "type.id", target = "typeId")
     @Mapping(source = "city.id", target = "cityId")
+    @Mapping(source = "city.name", target = "cityName")
     @Mapping(source = "createdTimestamp", target = "createdTimestamp")
     @Mapping(source = "editedTimestamp", target = "editedTimestamp")
     @Mapping(source = "status", target = "status")
@@ -43,6 +44,7 @@ public interface AdvertisementMapper {
     AdvertisementDto toDto(Advertisement advertisement);
 
     List<AdvertisementDto> toDtos(List<Advertisement> advertisements);
+    List<AdvertisementDto> activeAdvertisementsDtos(List<Advertisement> allActiveAdvertisements);
 
 
     @Mapping(source = "id", target = "id")
@@ -56,5 +58,10 @@ public interface AdvertisementMapper {
     @Mapping(source = "status", target = "status")
     @Mapping(expression = "java(PictureUtil.byteArrayToString(advertisement.getPicture()))", target = "picture")
     AdvertisementResponse toResponse(Advertisement advertisement);
+
+
+
+
+
 
    }

@@ -24,7 +24,13 @@ public class AdvertisementService {
         return advertisementRepository.findByUserIdAndTypeId(userId, typeId);
     }
 
-    public List<Advertisement> findAllAdvertisements() {
-        return advertisementRepository.findAll();
+    public List<Advertisement> findAllActiveAdvertisements(String status) {
+        List<Advertisement> allActiveAdvertisements = advertisementRepository.findAllActiveAdvertisements(status);
+        return allActiveAdvertisements;
+    }
+
+    public List<Advertisement> getSortedAdvertisements(Integer cityId, Integer typeId, String status) {
+        List<Advertisement> sortedAdvertisements = advertisementRepository.findActiveAdvertisements(cityId, typeId, status);
+        return sortedAdvertisements;
     }
 }
