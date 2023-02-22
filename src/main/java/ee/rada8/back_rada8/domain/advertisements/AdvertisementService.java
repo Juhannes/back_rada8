@@ -1,5 +1,6 @@
 package ee.rada8.back_rada8.domain.advertisements;
 
+import ee.rada8.back_rada8.domain.advertisements.advertisement_type.AdvertisementTypeRepository;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 
@@ -11,6 +12,11 @@ public class AdvertisementService {
 
     @Resource
     private AdvertisementRepository advertisementRepository;
+    private final AdvertisementTypeRepository advertisementTypeRepository;
+
+    public AdvertisementService(AdvertisementTypeRepository advertisementTypeRepository) {
+        this.advertisementTypeRepository = advertisementTypeRepository;
+    }
 
     public void saveAdvertisement(Advertisement advertisement) {
         advertisementRepository.save(advertisement);
@@ -30,7 +36,15 @@ public class AdvertisementService {
     }
 
     public List<Advertisement> getSortedAdvertisements(Integer cityId, Integer typeId, String status) {
-        List<Advertisement> sortedAdvertisements = advertisementRepository.findActiveAdvertisements(cityId, typeId, status);
-        return sortedAdvertisements;
+        if (cityId == 0 && typeId == 0) {
+            return findAllActiveAdvertisements(status);
+        } else if (cityId == 0 && typeId != 0) {
+            return advertisementRepository.findByTypeIdAndStatus(typeId, status);
+        } else if (cityId != 0 && typeId == 0) {
+            return advertisementRepository.findByCityIdAndStatus(cityId, status);
+        } else {
+            List<Advertisement> sortedAdvertisements = advertisementRepository.findActiveAdvertisements(cityId, typeId, status);
+            return sortedAdvertisements;
+        }
     }
 }

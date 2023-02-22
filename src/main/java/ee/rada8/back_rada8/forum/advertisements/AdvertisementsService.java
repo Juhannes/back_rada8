@@ -66,6 +66,9 @@ public class AdvertisementsService {
     public Advertisement getEditedAdvertisement(Integer advertisementId, AdvertisementDto advertisementDto) {
         Advertisement advertisement = advertisementService.findAdvertisement(advertisementId);
         advertisementMapper.updateAdvertisement(advertisementDto, advertisement);
+        if (advertisementDto.getPicture() == null) {
+            advertisement.setPicture(null);
+        }
         updateCityIfChanged(advertisementDto.getCityId(), advertisement);
         updateTypeIfChanged(advertisementDto.getTypeId(), advertisement);
         User user = userService.findUser(advertisementDto.getUserId());
