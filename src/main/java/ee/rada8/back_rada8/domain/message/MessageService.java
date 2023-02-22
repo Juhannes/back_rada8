@@ -75,11 +75,10 @@ public class MessageService {
     }
 
     public void replyToMessage(IncomingMessage replyMessage) {
-        MessageReceiver messageReceiver = createMessageAndMessageReceiver(replyMessage);
-        messageReceiverRepository.save(messageReceiver);
+        createMessageAndMessageReceiver(replyMessage);
     }
 
-    public MessageReceiver createMessageAndMessageReceiver(IncomingMessage incomingMessage) {
+    public void createMessageAndMessageReceiver(IncomingMessage incomingMessage) {
         Integer messageId = createAndSaveMessage(incomingMessage.getMessageBody(), incomingMessage.getPicture());
 
         MessageReceiver messageReceiver = new MessageReceiver();
@@ -96,7 +95,7 @@ public class MessageService {
 
         Optional<User> receiver = userRepository.findById(incomingMessage.getReceiverId());
         messageReceiver.setReceiver(receiver.get());
-        return messageReceiver;
+        messageReceiverRepository.save(messageReceiver);
     }
 
 

@@ -148,8 +148,7 @@ public class ConversationMessagesService {
             messageService.createMessageAndMessageReceiver(newIncomingMessage);
 
         } else {
-            MessageReceiver messageReceiver = messageService.createMessageAndMessageReceiver(newIncomingMessage);
-            messageReceiverRepository.save(messageReceiver);
+            messageService.createMessageAndMessageReceiver(newIncomingMessage);
         }
     }
 }
