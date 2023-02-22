@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface MessageReceiverRepository extends JpaRepository<MessageReceiver, Integer> {
 
-    @Query("select m from MessageReceiver m where m.sender.id = ?1 or m.receiver.id = ?1 order by m.message.datetime DESC, m.conversation.id DESC")
+    @Query("select m from MessageReceiver m where m.sender.id = ?1 or m.receiver.id = ?1 order by m.message.datetime DESC")
     List<MessageReceiver> findMessageReceiverEntries(Integer userId);
 
     @Query("select m from MessageReceiver m where m.conversation.id = ?1 and m.sender.id = ?2")
