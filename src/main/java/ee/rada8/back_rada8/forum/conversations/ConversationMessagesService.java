@@ -81,16 +81,6 @@ public class ConversationMessagesService {
             messageGroupsDtos.add(messageGroupDtos);
         }
 
-//
-//        for (MessageReceiver receivedConversation : receivedConversationGroups) {
-//            ReceivedMessageDto receivedMessageDto = new ReceivedMessageDto();
-//            addMessageDtoToReceivedMessageDto(receivedConversation, receivedMessageDto);
-//            addConversationDtoToReceivedMessageDto(receivedConversation, receivedMessageDto);
-//            addUserDtoToReceivedMessageDto(receivedConversation, receivedMessageDto);
-//            receivedMessageDtos.add(receivedMessageDto);
-//        }
-//        return receivedMessageDtos;
-
         return messageGroupsDtos;
     }
 

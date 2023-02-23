@@ -1,6 +1,7 @@
 package ee.rada8.back_rada8.forum.advertisements;
 
 import ee.rada8.back_rada8.domain.City;
+import ee.rada8.back_rada8.domain.CityMapper;
 import ee.rada8.back_rada8.domain.CityService;
 import ee.rada8.back_rada8.domain.advertisements.Advertisement;
 import ee.rada8.back_rada8.domain.advertisements.AdvertisementMapper;
@@ -9,7 +10,7 @@ import ee.rada8.back_rada8.domain.advertisements.advertisement_type.Advertisemen
 import ee.rada8.back_rada8.domain.advertisements.advertisement_type.AdvertisementTypeService;
 import ee.rada8.back_rada8.domain.user.User;
 import ee.rada8.back_rada8.domain.user.UserService;
-import ee.rada8.back_rada8.forum.Status;
+import ee.rada8.back_rada8.forum.CityDto;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,7 +26,8 @@ public class AdvertisementsService {
 
     @Resource
     private AdvertisementMapper advertisementMapper;
-
+    @Resource
+    private CityMapper cityMapper;
     @Resource
     private AdvertisementService advertisementService;
     @Resource
@@ -121,5 +123,12 @@ public class AdvertisementsService {
         List<Advertisement> sortedAdvertisements = advertisementService.getSortedAdvertisements(cityId, typeId, status);
         List<AdvertisementDto> advertisementDtos = advertisementMapper.toDtos(sortedAdvertisements);
         return advertisementDtos;
+    }
+
+    public List<CityDto> getActiveAdCities() {
+        List<City> activeAdCities = advertisementService.getActiveAdCities();
+
+        return cityMapper.toDtos(activeAdCities);
+
     }
 }
