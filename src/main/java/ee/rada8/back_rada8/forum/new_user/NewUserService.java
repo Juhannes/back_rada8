@@ -13,8 +13,8 @@ public class NewUserService {
     @Resource
     private UserService userService;
 
-    public void addUser(UserDto userDto) {
-        User user = userMapper.toEntity(userDto);
+    public void addUser(NewUserDto newUserDto) {
+        User user = userMapper.toEntity(newUserDto);
         userService.saveNewUser(user);
 
     }

@@ -1,5 +1,6 @@
-package ee.rada8.back_rada8.domain.user;
+package ee.rada8.back_rada8.forum;
 
+import ee.rada8.back_rada8.domain.user.UserService;
 import ee.rada8.back_rada8.forum.dtos.UserDto;
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.annotation.Resource;

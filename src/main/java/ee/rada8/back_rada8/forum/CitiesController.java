@@ -20,9 +20,17 @@ public class CitiesController {
         return citiesService.getCities();
     }
 
+    @GetMapping("/city")
+    @Operation(summary = "Finds city by cityId", description = "Finds city by cityId")
+    public CityDto getCity(Integer cityId) {
+        return citiesService.getCity(cityId);
+    }
+
     @GetMapping("/cities-ads")
     @Operation(summary = "Finds cities that have ad(s) posted in them", description = "Finds all unique cities from Advertisement table that have ad posted")
     public List<CityDto> getActiveAdCities() {
         return citiesService.getActiveAdCities();
     }
+
+
 }

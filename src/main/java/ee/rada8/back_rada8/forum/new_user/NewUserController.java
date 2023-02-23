@@ -12,8 +12,8 @@ public class NewUserController {
     private NewUserService newUserService;
     @PostMapping("/register")
     @Operation(summary = "Add new user to database", description = "Default usertype will be 'user'")
-    public void addUser(@RequestBody UserDto userDto) {
-        newUserService.addUser(userDto);
+    public void addUser(@RequestBody NewUserDto newUserDto) {
+        newUserService.addUser(newUserDto);
 
     }
 }
