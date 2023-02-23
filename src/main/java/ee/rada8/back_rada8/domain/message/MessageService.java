@@ -69,8 +69,9 @@ public class MessageService {
     public Message getUpdatedMessage(Integer messageId, MessageDto messageDto) {
 
         Message message = getMessage(messageId);
+
+        messageMapper.updateMessage(messageDto, message);
         message.setStatus(ACTIVE);
-        message = messageMapper.updateMessage(messageDto, message);
 
         return message;
     }
