@@ -21,8 +21,6 @@ import ee.rada8.back_rada8.forum.dtos.UserDto;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 
-import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -86,8 +84,11 @@ public class ConversationMessagesService {
 
     public void addUserDtoToReceivedMessageDto(MessageReceiver receivedConversation, ReceivedMessageDto receivedMessageDto) {
         User sender = receivedConversation.getSender();
-        UserDto userDto = userMapper.toDto(sender);
-        receivedMessageDto.setSender(userDto);
+        UserDto senderDto = userMapper.toDto(sender);
+        receivedMessageDto.setSender(senderDto);
+        User receiver = receivedConversation.getReceiver();
+        UserDto receiverDto = userMapper.toDto(receiver);
+        receivedMessageDto.setReceiver(receiverDto);
     }
 
     public void addConversationDtoToReceivedMessageDto(MessageReceiver receivedConversation, ReceivedMessageDto receivedMessageDto) {
@@ -105,12 +106,8 @@ public class ConversationMessagesService {
         MessageDto messageDto = messageMapper.toDto(message);
         receivedMessageDto.setMessageId(messageDto.getMessageId());
         receivedMessageDto.setBody(messageDto.getBody());
-
-        String outputFormat = "HH:mm dd/MM/yyyy";
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(outputFormat).withZone(ZoneId.systemDefault());
-        String formattedTimestamp = formatter.format(message.getDatetime());
         receivedMessageDto.setPicture(messageDto.getPicture());
-        receivedMessageDto.setDateTime(formattedTimestamp);
+        receivedMessageDto.setDateTime(messageDto.getDateTime());
         receivedMessageDto.setStatus(messageDto.getStatus());
 
     }

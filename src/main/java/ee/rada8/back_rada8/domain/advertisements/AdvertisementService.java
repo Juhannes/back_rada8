@@ -6,9 +6,8 @@ import ee.rada8.back_rada8.forum.Status;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 
-import java.util.HashSet;
-import java.util.LinkedHashSet;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class AdvertisementService {
@@ -62,7 +61,9 @@ public class AdvertisementService {
             }
         }
 
-        return citiesHashSet.stream().toList();
+        List<City> sortedCities = citiesHashSet.stream().sorted(Comparator.comparing((City::getName))).collect(Collectors.toList());
+
+        return sortedCities;
 
 
     }

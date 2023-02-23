@@ -37,4 +37,5 @@ public interface MessageMapper {
     @InheritConfiguration(name = "toEntity")
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     Message updateMessage(MessageDto messageDto, @MappingTarget Message message);
+
 }

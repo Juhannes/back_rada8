@@ -13,6 +13,8 @@ public class ReceivedMessageDto {
 
     private UserDto sender;
 
+    private UserDto receiver;
+
     private String body;
 
     private String picture;
